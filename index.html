@@ -61,6 +61,106 @@
       type="text/css"
       href="./assets/css/topbar.virtual.css"
     />
+    <style>
+      .btn {
+  --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: 0.125em;
+  --curve-size: 0.5em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+  cursor: pointer;
+  /* use position: relative; so that BG is only for .btn */
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  padding: 0.5em 1.5em;
+  font-size: 17px;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+  clip-path: polygon(
+    /* Top-left */ 0% var(--curve-size),
+    var(--curve-size) 0,
+    /* top-right */ 100% 0,
+    100% calc(100% - var(--curve-size)),
+    /* bottom-right 1 */ calc(100% - var(--curve-size)) 100%,
+    /* bottom-right 2 */ 0 100%
+  );
+  transition: color 250ms;
+}
+
+.btn::after,
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.btn::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%;
+  }
+
+  50% {
+    background-position: 70% 100%;
+  }
+
+  100% {
+    background-position: 31% 0%;
+  }
+}
+
+.btn::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+    /* Top-left */ var(--border-width)
+      calc(var(--curve-size) + var(--border-width) * 0.5),
+    calc(var(--curve-size) + var(--border-width) * 0.5) var(--border-width),
+    /* top-right */ calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    /* bottom-right 1 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    /* bottom-right 2 */ var(--border-width) calc(100% - var(--border-width))
+  );
+  transition: clip-path 500ms;
+}
+
+.btn:where(:hover, :focus)::after {
+  clip-path: polygon(
+    /* Top-left */ calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    calc(100% - var(--border-width)) var(--border-width),
+    /* top-right */ calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    /* bottom-right 1 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width)),
+    /* bottom-right 2 */
+      calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+      calc(100% - var(--border-width))
+  );
+  transition: 200ms;
+}
+
+.btn:where(:hover, :focus) {
+  color: #fff;
+}
+
+    </style>
   </head>
 
   <body class="theme-red">
@@ -167,12 +267,11 @@
                 <a href="#blog" class="nav-link" data-animate="scrolling"
                   >Blog</a
                 >
-              </li>
-              <li class="nav-item">
-                <a href="#contact" class="nav-link" data-animate="scrolling"
-                  >Contact</a
-                >
               </li> -->
+              <li class="nav-item">
+                <a class="btn" href="#footer">Hire Me!</a>
+
+              </li>
             </ul>
             <ul class="nav ml-auto">
               <li class="nav-item">
@@ -214,7 +313,7 @@
             <ul class="theme-list">
               <li><b>From:</b> Lahore, Pakistan</li>
               <li><b>Lives In:</b> Lahore, Pakistan</li>
-              <li><b>Age:</b> 24</li>
+              <li><b>Age:</b> 25</li>
               <li><b>Gender:</b> Male</li>
             </ul>
             <a href="./assets/ABDULBAQI.pdf" target="_blank" download>
@@ -400,7 +499,17 @@
             <h2 class="fw-normal">Experience</h2>
             <ul class="timeline mt-4 pr-md-5">
               <li>
-                <div class="title">2021 - present</div>
+                <div class="title">2024 - Present</div>
+                <div class="details">
+                  <h5>Laravel Developer</h5>
+                  <small class="fg-theme">Xint Solution</small>
+                  <p>
+                    Laravel Expert | Full Stack Developer | API | JavaScript  | Agile Development | Git/GitHub | MySQL | MongoDB | MVC Architecture
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="title">2021 - 2024</div>
                 <div class="details">
                   <h5>Laravel Developer</h5>
                   <small class="fg-theme">SolutionWins Technologies</small>
@@ -680,7 +789,7 @@
         </div>
         <!-- End gridder -->
         <div class="text-center wow fadeInUp">
-          <a href="javascript:void(0)" class="btn btn-theme">Load More</a>
+          <!-- <a href="javascript:void(0)" class="btn btn-theme">Load More</a> -->
         </div>
       </div>
     </div>
@@ -935,7 +1044,7 @@
     <!-- End Contact -->
 
     <!-- Footer -->
-    <div class="vg-footer">
+    <div class="vg-footer" id="footer">
       <h1 class="text-center">Mr.AbdulBaqi</h1>
       <div class="container">
         <div class="row">
